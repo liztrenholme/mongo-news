@@ -1,0 +1,27 @@
+{
+  "name": "mongo-news",
+  "version": "1.0.0",
+  "description": "a mongodb news scraper",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liztrenholme/mongo-news.git"
+  },
+  "author": "liz t",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liztrenholme/mongo-news/issues"
+  },
+  "homepage": "https://github.com/liztrenholme/mongo-news#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^5.1.2",
+    "request": "^2.87.0"
+  }
+}
