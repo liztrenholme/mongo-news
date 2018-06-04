@@ -1,9 +1,9 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-//var logger = require("morgan");
 var mongoose = require("mongoose");
 var cheerio = require("cheerio");
 var request = require("request");
+var axios = require("axios");
 
 // Require all models
 var db = require("./models");
@@ -25,10 +25,10 @@ mongoose.connect("mongodb://localhost/newsArticles");
 
 // Routes
 
-// A GET route for scraping the echoJS website
+// A GET route for scraping
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
-  request.get("http://www.nytimes.com/").then(function(response) {
+  axios.get("http://www.nytimes.com/").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
 

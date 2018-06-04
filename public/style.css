@@ -1,3 +1,43 @@
 body {
 	background-color: grey;
 }
+
+.container-fluid {
+	background-image: url("images/newspaper.jpg");
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+.navbar {
+	opacity: .8;
+}
+
+#navtitle {
+	font-family: 'Special Elite', cursive;
+	font-size: 210%;
+	margin: 10px 0 0 0;
+}
+
+.jumbotron {
+	margin-top: 9%;
+}
+
+#articles {
+	background-color: #fff;
+	opacity: .95;
+}
+
+h4 {
+	margin: 15px 0 -15px 0;
+	font-family: 'Nunito Sans', sans-serif;
+}
+
+a {
+	color: grey;
+	font-family: 'Nunito Sans', sans-serif;
+	text-align: center;
+}
+
+a:hover {
+	color: #f8f8f8;
+}
