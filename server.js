@@ -4,27 +4,35 @@ var mongoose = require("mongoose");
 var cheerio = require("cheerio");
 var request = require("request");
 var axios = require("axios");
+var path = require("path");
 
 // Require all models
 var db = require("./models");
 
-var PORT = 3000;
-
 // Initialize Express
 var app = express();
 
+app.set("port", (process.env.PORT || 4000));
 // Configure middleware
 
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: true }));
 // Use express.static to serve the public folder as a static directory
-app.use(express.static("public"));
+//app.use(express.static(path.join(__dirname, "public")));
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
 
+app.set("views", path.join(__dirname, "views"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
+//Heroku
+if (process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI);
+} else {
+  mongoose.connect(databaseUri);
+}
 
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/newsArticles");
@@ -68,7 +76,16 @@ app.get("/scrape", function(req, res) {
   });
 });
 
-// Route for getting all Articles from the db
+app.get("/", function(req, res) {
+	db.Article.find({}).then(function(dbArticle) {
+      var hbsObject = {
+        articles: dbArticle
+      };
+	 // console.log(hbsObject);
+	res.render("home", hbsObject);
+    })	
+});
+//Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
   // Grab every document in the Articles collection
   db.Article.find({})
@@ -119,6 +136,6 @@ app.post("/articles/:id", function(req, res) {
 });
 
 
-app.listen(4000, function() {
-  console.log("App running on port 4000!");
+app.listen(app.get("port"), function() {
+  console.log("App running on port " + app.get("port") + "!");
 });
