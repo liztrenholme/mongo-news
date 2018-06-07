@@ -27,6 +27,7 @@ app.set("views", path.join(__dirname, "views"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+var databaseUri = "mongodb://localhost/newsArticles";
 //Heroku
 if (process.env.MONGODB_URI) {
   mongoose.connect(process.env.MONGODB_URI);
@@ -35,7 +36,7 @@ if (process.env.MONGODB_URI) {
 }
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/newsArticles");
+//mongoose.connect("mongodb://localhost/newsArticles");
 
 // Routes
 
